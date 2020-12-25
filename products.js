@@ -17,11 +17,10 @@ exports.addProduct = (req, res) => {
     .then(doc => {
       if (doc.exists) {
         return res.status(400).json({ product: 'Duplicate' })
+      } else {
+        db.doc(`/products/${newProduct.name}`).set(newProduct)
+        res.status(201).json({ message: 'Product successfully added' })
       }
-    })
-    .then(() => {
-      db.doc(`/products/${newProduct.name}`).add(newProduct)
-      res.status(201).json({ message: 'Product successfully added' })
     })
     .catch(err => {
       res.status(500).json({ error: 'something went wrong' })
