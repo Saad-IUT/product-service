@@ -1,9 +1,9 @@
-const { addProduct } = require('./products')
+// const { addProduct } = require('./products')
 const app = require('express')()
-const jsonParser = require('body-parser').json()
-// const cors = require('cors')()
+// const jsonParser = require('body-parser').json()
+// // const cors = require('cors')()
 
-app.use(jsonParser)
+// app.use(jsonParser)
 
 app.get('/', (req, res) => {
   res.send('OK')
