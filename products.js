@@ -12,11 +12,16 @@ exports.addProduct = (req, res) => {
     name: req.body.name,
     uuid: uuidv4(),
   }
-
-  db.collection('products')
+  db.doc(`/products/${newProduct.name}`)
+    .get()
+    .then(doc => {
+      if (doc.exists) {
+        return res.status(400).json({ product: 'Duplicate' })
+      }
+    })
     .add(newProduct)
     .then(() => {
-      res.status(201)
+      res.status(201).json({ message: 'Product successfully added' })
     })
     .catch(err => {
       res.status(500).json({ error: 'something went wrong' })
