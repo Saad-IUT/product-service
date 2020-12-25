@@ -2,8 +2,13 @@ const app = require('express')()
 const jsonParser = require('body-parser').json()
 const cors = require('cors')()
 
+const { addProduct } = require('./products')
+
 app.use(cors, jsonParser)
 
+app.post('/product/add', addProduct)
+
+//Testing
 app.get('/', (req, res) => {
   res.send('OK')
 })

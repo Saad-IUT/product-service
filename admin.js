@@ -1,11 +1,11 @@
-// const admin = require('firebase-admin')
+const admin = require('firebase-admin')
 
-// const serviceAccount = require('./serviceAccountKey.json')
+const serviceAccount = require('./serviceAccountKey.json')
 
-// admin.initializeApp({
-//   credential: admin.credential.cert(serviceAccount),
-// })
+admin.initializeApp({
+  credential: admin.credential.cert(serviceAccount),
+})
 
-// const db = admin.firestore()
+const db = admin.firestore()
 
-// module.exports = { admin, db }
+module.exports = { admin, db }
