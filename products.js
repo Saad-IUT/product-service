@@ -94,5 +94,11 @@ exports.updateCategory = (req, res) => {
 
 //Sync product
 exports.syncProduct = (req, res) => {
-  console.log(req.body)
+  req.body.forEach(product => {
+    db.doc(`/products/${product.productId}`).update({
+      averageRating: product.averageRating,
+      numberOfRaters: product.numberOfRaters,
+    })
+  })
+  return res.json({ message: 'Product service synced with rating service' })
 }
