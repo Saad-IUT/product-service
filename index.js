@@ -17,6 +17,8 @@ app.post('/product/add', addProduct)
 app.delete('/product/remove/:productId', deleteProduct)
 app.get('/product/list', getAllProducts)
 app.post('/product/updateCategory', updateCategory)
+
+// Routes from rating service
 app.post('/product/sync', syncProduct)
 
 //Testing

@@ -10,7 +10,7 @@ exports.addProduct = async (req, res) => {
       name: product.name,
       categoryId: product.categoryId,
       categoryName: '',
-      averageRating: '',
+      averageRating: null,
       numberOfRaters: 0,
     }
     db.collection('products')
