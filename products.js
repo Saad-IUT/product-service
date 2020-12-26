@@ -94,5 +94,5 @@ exports.updateCategory = (req, res) => {
 
 //Sync product
 exports.syncProduct = (req, res) => {
-  console.log('sync')
+  console.log(req.body)
 }
