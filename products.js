@@ -3,8 +3,8 @@ const { validateProduct } = require('./validators')
 
 // Add Product
 exports.addProduct = async (req, res) => {
-  const valid = await validateProduct(req.body.name)
   const product = req.body
+  const valid = await validateProduct(product.name)
   if (valid) {
     const newProduct = {
       name: product.name,
@@ -23,7 +23,7 @@ exports.addProduct = async (req, res) => {
         console.error(err)
       })
   } else {
-    return res.status(400).json({ product: 'Duplicate' })
+    return res.status(400).json({ productName: 'Duplicate' })
   }
 }
 
