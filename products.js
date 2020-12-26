@@ -91,3 +91,8 @@ exports.updateCategory = (req, res) => {
       return res.status(500).json({ error: err.code })
     })
 }
+
+//Sync product
+exports.syncProduct = (req, res) => {
+  console.log('sync')
+}
