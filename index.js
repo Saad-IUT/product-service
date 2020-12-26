@@ -2,9 +2,14 @@ const app = require('express')()
 const jsonParser = require('body-parser').json()
 const cors = require('cors')()
 
-const { addProduct, deleteProduct, getAllProducts, updateCategory } = require('./products')
+const {
+  addProduct,
+  deleteProduct,
+  getAllProducts,
+  updateCategory,
+} = require('./products')
 
-app.use(cors, jsonParser)
+app.use(jsonParser)
 
 // Product routes
 app.post('/product/add', addProduct)

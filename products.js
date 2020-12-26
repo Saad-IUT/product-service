@@ -1,14 +1,14 @@
-const { v4: uuidv4 } = require('uuid')
 const { db } = require('./admin')
 const { validateProduct } = require('./validators')
 
 // Add Product
 exports.addProduct = async (req, res) => {
   const valid = await validateProduct(req.body.name)
+  const product = req.body
   if (valid) {
     const newProduct = {
-      name: req.body.name,
-      categoryId: req.body.categoryId,
+      name: product.name,
+      categoryId: product.categoryId,
       categoryName: '',
       averageRating: '',
       numberOfRaters: 0,
@@ -55,13 +55,14 @@ exports.getAllProducts = (req, res) => {
     .then(data => {
       let products = []
       data.forEach(doc => {
+        const productData = doc.data()
         products.push({
           id: doc.id,
-          name: doc.data().name,
-          categoryId: doc.data().categoryId,
-          categoryName: doc.data().categoryName,
-          averageRating: doc.data().averageRating,
-          numberOfRaters: doc.data().numberOfRaters,
+          name: productData.name,
+          categoryId: productData.categoryId,
+          categoryName: productData.categoryName,
+          averageRating: productData.averageRating,
+          numberOfRaters: productData.numberOfRaters,
         })
       })
       return res.json(products)
