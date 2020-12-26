@@ -8,7 +8,7 @@ app.use(cors, jsonParser)
 
 // Product routes
 app.post('/product/add', addProduct)
-// app.delete('/product/remove/:productId', deleteProduct)
+app.delete('/product/remove/:productId', deleteProduct)
 
 //Testing
 app.get('/', (req, res) => {

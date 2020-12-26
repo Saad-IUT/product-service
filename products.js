@@ -8,28 +8,25 @@ exports.helloWorld = (request, response) => {
 }
 
 // Add Product
-exports.addProduct = (req, res) => {
-  // const productRef = db.doc(`/products/${newProduct.name}`)
-  // const newProduct = {
-  //   name: req.body.name,
-  //   categoryId: req.body.categoryId,
-  // }
-  const valid = validateProduct(req.body.name)
-  console.log(valid)
-  // productRef
-  //   .get()
-  //   .then(doc => {
-  //     if (doc.exists) {
-  //       return res.status(400).json({ product: 'Duplicate' })
-  //     } else {
-  //       productRef.set(newProduct)
-  //       res.status(201).json({ message: 'Product successfully added' })
-  //     }
-  //   })
-  //   .catch(err => {
-  //     res.status(500).json({ error: 'something went wrong' })
-  //     console.error(err)
-  //   })
+exports.addProduct = async (req, res) => {
+  const valid = await validateProduct(req.body.name)
+  if (valid) {
+    const newProduct = {
+      name: req.body.name,
+      categoryId: req.body.categoryId,
+    }
+    db.collection('products')
+      .add(newProduct)
+      .then(() => {
+        res.status(201).json({ message: 'Product added successfully' })
+      })
+      .catch(err => {
+        res.status(500).json({ error: 'something went wrong' })
+        console.error(err)
+      })
+  } else {
+    return res.status(400).json({ product: 'Duplicate' })
+  }
 }
 
 // Delete a product
